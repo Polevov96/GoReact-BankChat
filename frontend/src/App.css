@@ -1,0 +1,190 @@
+.app {
+
+  display: flex;
+
+
+  min-height: 100vh;
+
+  background: #070a09;
+}
+
+.sidebar {
+
+  width: 260px;
+
+  min-height: 100vh;
+
+  padding: 32px 20px;
+
+  border-right: 1px solid rgba(214, 173, 108, 0.18);
+
+  background:
+    linear-gradient(180deg,
+      #0d1311 0%,
+      #080c0b 100%);
+      display: flex;
+      flex-direction: column;
+}
+
+
+.brand {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 0 8px 28px;
+
+  margin-bottom: 24px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 12px;
+
+  border: 1px solid rgba(214, 173, 108, 0.45);
+
+  background: rgba(214, 173, 108, 0.08);
+
+  color: #d6ad6c;
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.brand-name {
+
+  margin: 0;
+
+  color: #f4f1ea;
+
+  font-size: 15px;
+  font-weight: 600;
+
+
+  letter-spacing: 0.02em;
+}
+
+.brand-subtitle {
+  margin: 4px 0 0;
+
+  color: #777d78;
+
+  font-size: 11px;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+.sidebar-nav {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 14px;
+
+  border-radius: 12px;
+
+  color: #9a9d98;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  transition:
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.035);
+
+  color: #f4f1ea;
+}
+
+.nav-item--active {
+
+  background:
+    linear-gradient(90deg,
+      rgba(25, 66, 54, 0.48),
+      rgba(214, 173, 108, 0.06));
+
+  border: 1px solid rgba(214, 173, 108, 0.16);
+
+  color: #f4f1ea;
+}
+
+.main-content {
+
+  flex: 1;
+
+  padding: 48px;
+
+  background:
+    radial-gradient(circle at 20% 0%,
+      rgba(26, 75, 61, 0.12),
+      transparent 35%),
+    #070a09;
+}
+
+.page-eyebrow {
+  margin: 0 0 10px;
+
+  color: #d6ad6c;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+}
+
+.page-title {
+
+  margin: 0;
+
+  color: #f4f1ea;
+
+  font-size: 38px;
+
+  line-height: 1.1;
+
+  font-weight: 500;
+
+  letter-spacing: -0.03em;
+}
+
+
+.page-description {
+  margin: 14px 0 0;
+
+  color: #7f847f;
+
+  font-size: 15px;
+
+  line-height: 1.6;
+}
+.sidebar-nav--secondary {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
