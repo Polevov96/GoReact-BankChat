@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import Sidebar from "./components/Sidebar";
 import StatCard from "./components/StatCard";
@@ -17,6 +18,8 @@ type Agent = {
   status: string;
 };
 function App() {
+  const [projectFilter, setProjectFilter] = useState("Все");
+
   const projects: Project[] = [
     {
       id: 1,
@@ -33,17 +36,26 @@ function App() {
     {
       id: 3,
       name: "NIXORA",
-      status: "Активный",
+      status: "На паузе",
       progress: 22,
     },
     {
       id: 4,
       name: "BankChat",
-      status: "Активный",
+      status: "Завершён",
       progress: 55,
     },
   ];
-  const Agents: Agent[] = [
+
+  const filteredProjects = projects.filter((project) => {
+    return projectFilter === "Все" || project.status === projectFilter;
+  });
+
+  const activeProjectsCount = projects.filter((project) => {
+    return project.status === "Активный";
+  }).length;
+
+  const agents: Agent[] = [
     {
       id: 1,
       name: "NOVERA",
@@ -65,10 +77,13 @@ function App() {
     {
       id: 4,
       name: "BankChat",
-      status: "Активный",
+      status: "Не активный",
       role: "Разработчик",
     },
   ];
+  const activeAgentsCount = agents.filter((agent) => {
+    return agent.status === "Активный";
+  }).length;
 
   return (
     <div className="app">
@@ -76,22 +91,61 @@ function App() {
 
       <main className="main-content">
         <p className="page-eyebrow">Главная</p>
-
         <h1 className="page-title">Добрый день</h1>
-
         <p className="page-description">
           Ваше пространство для проектов, команды и AI-агентов.
         </p>
-
         <div className="stats">
-          <StatCard title="Активные проекты" value={4} />
+          <StatCard title="Активные проекты" value={activeProjectsCount} />
           <StatCard title="Требуют внимания" value={7} />
-          <StatCard title="Активные агенты" value={6} />
+          <StatCard title="Активные агенты" value={activeAgentsCount} />
           <StatCard title="Расходы проектов" value="€842" />
         </div>
         <h2>Продолжить работу</h2>
+        <div className="project-filters">
+          <button
+            className={
+              projectFilter === "Все"
+                ? "filter-button filter-button--active"
+                : "filter-button"
+            }
+            onClick={() => setProjectFilter("Все")}
+          >
+            Все
+          </button>
+          <button
+            className={
+              projectFilter === "Активный"
+                ? "filter-button filter-button--active"
+                : "filter-button"
+            }
+            onClick={() => setProjectFilter("Активный")}
+          >
+            Активные
+          </button>
+          <button
+            className={
+              projectFilter === "На паузе"
+                ? "filter-button filter-button--active"
+                : "filter-button"
+            }
+            onClick={() => setProjectFilter("На паузе")}
+          >
+            На паузе
+          </button>
+          <button
+            className={
+              projectFilter === "Завершён"
+                ? "filter-button filter-button--active"
+                : "filter-button"
+            }
+            onClick={() => setProjectFilter("Завершён")}
+          >
+            Завершённые
+          </button>
+        </div>
         <div className="projects-grid">
-          {projects.map((project) => (
+          {filteredProjects.map((project) => (
             <ProjectCard
               key={project.id}
               name={project.name}
@@ -101,13 +155,13 @@ function App() {
           ))}
         </div>
         <h2>Команда ИИ</h2>
-        <div className="Agents-grid">
-          {Agents.map((Agent) => (
+        <div className="agents-grid">
+          {agents.map((agent) => (
             <AgentCard
-              key={Agent.id}
-              name={Agent.name}
-              status={Agent.status}
-              role={Agent.role}
+              key={agent.id}
+              name={agent.name}
+              status={agent.status}
+              role={agent.role}
             />
           ))}
         </div>
