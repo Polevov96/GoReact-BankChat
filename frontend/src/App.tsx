@@ -125,7 +125,6 @@ function App() {
         <h1 className="page-title">Добрый день</h1>
 
         <p className="page-description">
-          {" "}
           Ваше пространство для проектов, команды и AI-агентов.
         </p>
 
