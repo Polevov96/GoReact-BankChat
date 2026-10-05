@@ -5,20 +5,31 @@ import StatCard from "./components/StatCard";
 import ProjectCard from "./components/ProjectCard";
 import AgentCard from "./components/AgentCard";
 
+type ProjectStatus = "Активный" | "На паузе" | "Завершён";
+type AgentStatus = "Активный" | "Не активный";
+type ProjectFilter = "Все" | ProjectStatus;
+
 type Project = {
   id: number;
   name: string;
-  status: string;
+  status: ProjectStatus;
   progress: number;
 };
+
 type Agent = {
   id: number;
   name: string;
   role: string;
-  status: string;
+  status: AgentStatus;
 };
+
+type ProjectFilterOption = {
+  value: ProjectFilter;
+  label: string;
+};
+
 function App() {
-  const [projectFilter, setProjectFilter] = useState("Все");
+  const [projectFilter, setProjectFilter] = useState<ProjectFilter>("Все");
 
   const projects: Project[] = [
     {
@@ -81,9 +92,29 @@ function App() {
       role: "Разработчик",
     },
   ];
+
   const activeAgentsCount = agents.filter((agent) => {
     return agent.status === "Активный";
   }).length;
+
+  const projectFilters: ProjectFilterOption[] = [
+    {
+      value: "Все",
+      label: "Все",
+    },
+    {
+      value: "Активный",
+      label: "Активные",
+    },
+    {
+      value: "На паузе",
+      label: "На паузе",
+    },
+    {
+      value: "Завершён",
+      label: "Завершённые",
+    },
+  ];
 
   return (
     <div className="app">
@@ -92,58 +123,35 @@ function App() {
       <main className="main-content">
         <p className="page-eyebrow">Главная</p>
         <h1 className="page-title">Добрый день</h1>
+
         <p className="page-description">
           Ваше пространство для проектов, команды и AI-агентов.
         </p>
+
         <div className="stats">
           <StatCard title="Активные проекты" value={activeProjectsCount} />
           <StatCard title="Требуют внимания" value={7} />
           <StatCard title="Активные агенты" value={activeAgentsCount} />
           <StatCard title="Расходы проектов" value="€842" />
         </div>
+
         <h2>Продолжить работу</h2>
         <div className="project-filters">
-          <button
-            className={
-              projectFilter === "Все"
-                ? "filter-button filter-button--active"
-                : "filter-button"
-            }
-            onClick={() => setProjectFilter("Все")}
-          >
-            Все
-          </button>
-          <button
-            className={
-              projectFilter === "Активный"
-                ? "filter-button filter-button--active"
-                : "filter-button"
-            }
-            onClick={() => setProjectFilter("Активный")}
-          >
-            Активные
-          </button>
-          <button
-            className={
-              projectFilter === "На паузе"
-                ? "filter-button filter-button--active"
-                : "filter-button"
-            }
-            onClick={() => setProjectFilter("На паузе")}
-          >
-            На паузе
-          </button>
-          <button
-            className={
-              projectFilter === "Завершён"
-                ? "filter-button filter-button--active"
-                : "filter-button"
-            }
-            onClick={() => setProjectFilter("Завершён")}
-          >
-            Завершённые
-          </button>
+          {projectFilters.map((filterStatus) => (
+            <button
+              key={filterStatus.value}
+              className={
+                projectFilter === filterStatus.value
+                  ? "filter-button filter-button--active"
+                  : "filter-button"
+              }
+              onClick={() => setProjectFilter(filterStatus.value)}
+            >
+              {filterStatus.label}
+            </button>
+          ))}
         </div>
+
         <div className="projects-grid">
           {filteredProjects.map((project) => (
             <ProjectCard
@@ -154,6 +162,7 @@ function App() {
             />
           ))}
         </div>
+
         <h2>Команда ИИ</h2>
         <div className="agents-grid">
           {agents.map((agent) => (
