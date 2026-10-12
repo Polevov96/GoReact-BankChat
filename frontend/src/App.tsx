@@ -4,12 +4,8 @@ import Sidebar from "./components/Sidebar";
 import StatCard from "./components/StatCard";
 import ProjectCard from "./components/ProjectCard";
 import AgentCard from "./components/AgentCard";
-import type {
-  ProjectFilter,
-  Project,
-  Agent,
-  ProjectFilterOption,
-} from "./types";
+import type { ProjectFilter, Project, Agent } from "./types";
+import { projectFilters } from "./data/projectFilters";
 
 function App() {
   const [projectFilter, setProjectFilter] = useState<ProjectFilter>("Все");
@@ -79,25 +75,6 @@ function App() {
   const activeAgentsCount = agents.filter((agent) => {
     return agent.status === "Активный";
   }).length;
-
-  const projectFilters: ProjectFilterOption[] = [
-    {
-      value: "Все",
-      label: "Все",
-    },
-    {
-      value: "Активный",
-      label: "Активные",
-    },
-    {
-      value: "На паузе",
-      label: "На паузе",
-    },
-    {
-      value: "Завершён",
-      label: "Завершённые",
-    },
-  ];
 
   return (
     <div className="app">
