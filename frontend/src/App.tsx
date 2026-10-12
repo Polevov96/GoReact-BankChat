@@ -4,29 +4,12 @@ import Sidebar from "./components/Sidebar";
 import StatCard from "./components/StatCard";
 import ProjectCard from "./components/ProjectCard";
 import AgentCard from "./components/AgentCard";
-
-type ProjectStatus = "Активный" | "На паузе" | "Завершён";
-type AgentStatus = "Активный" | "Не активный";
-type ProjectFilter = "Все" | ProjectStatus;
-
-type Project = {
-  id: number;
-  name: string;
-  status: ProjectStatus;
-  progress: number;
-};
-
-type Agent = {
-  id: number;
-  name: string;
-  role: string;
-  status: AgentStatus;
-};
-
-type ProjectFilterOption = {
-  value: ProjectFilter;
-  label: string;
-};
+import type {
+  ProjectFilter,
+  Project,
+  Agent,
+  ProjectFilterOption,
+} from "./types";
 
 function App() {
   const [projectFilter, setProjectFilter] = useState<ProjectFilter>("Все");
