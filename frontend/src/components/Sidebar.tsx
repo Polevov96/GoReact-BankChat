@@ -1,3 +1,5 @@
+import { NavLink } from "react-router";
+
 function Sidebar() {
   return (
     <aside className="sidebar">
@@ -12,36 +14,72 @@ function Sidebar() {
       </div>
 
       <nav className="sidebar-nav" aria-label="Основная навигация">
-        <a className="nav-item nav-item--active" href="#" aria-current="page">
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) =>
+            isActive ? "nav-item nav-item--active" : "nav-item"
+          }
+        >
           Главная
-        </a>
+        </NavLink>
 
-        <a className="nav-item" href="#">
+        <NavLink
+          to="/projects"
+          className={({ isActive }) =>
+            isActive ? "nav-item nav-item--active" : "nav-item"
+          }
+        >
           Проекты
-        </a>
-        <a className="nav-item" href="#">
+        </NavLink>
+        <NavLink
+          to="/chats"
+          className={({ isActive }) =>
+            isActive ? "nav-item nav-item--active" : "nav-item"
+          }
+        >
           Чаты
-        </a>
-        <a className="nav-item" href="#">
+        </NavLink>
+        <NavLink
+          to="/agents"
+          className={({ isActive }) =>
+            isActive ? "nav-item nav-item--active" : "nav-item"
+          }
+        >
           Агенты
-        </a>
+        </NavLink>
 
-        <a className="nav-item" href="#">
+        <NavLink
+          to="/analytics"
+          className={({ isActive }) =>
+            isActive ? "nav-item nav-item--active" : "nav-item"
+          }
+        >
           Аналитика
-        </a>
+        </NavLink>
       </nav>
 
       <nav
         className="sidebar-nav sidebar-nav--secondary"
         aria-label="Дополнительная навигация"
       >
-        <a className="nav-item" href="#">
+        <NavLink
+          to="/notifications"
+          className={({ isActive }) =>
+            isActive ? "nav-item nav-item--active" : "nav-item"
+          }
+        >
           Уведомления
-        </a>
+        </NavLink>
 
-        <a className="nav-item" href="#">
+        <NavLink
+          to="/settings"
+          className={({ isActive }) =>
+            isActive ? "nav-item nav-item--active" : "nav-item"
+          }
+        >
           Настройки
-        </a>
+        </NavLink>
       </nav>
     </aside>
   );
