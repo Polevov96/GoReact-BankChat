@@ -2,38 +2,12 @@ import { useState } from "react";
 import StatCard from "../components/StatCard";
 import ProjectCard from "../components/ProjectCard";
 import AgentCard from "../components/AgentCard";
-import { projectFilters } from "../data/projectFilters";
-import type { ProjectFilter, Project, Agent } from "../types";
+import { projects } from "../data/projects";
+import type { ProjectFilter, Agent } from "../types";
+import ProjectFilters from "../components/ProjectFilters";
 
 function HomePage() {
   const [projectFilter, setProjectFilter] = useState<ProjectFilter>("Все");
-
-  const projects: Project[] = [
-    {
-      id: 1,
-      name: "NOVERA",
-      status: "Активный",
-      progress: 72,
-    },
-    {
-      id: 2,
-      name: "NEXORA",
-      status: "Активный",
-      progress: 11,
-    },
-    {
-      id: 3,
-      name: "NIXORA",
-      status: "На паузе",
-      progress: 22,
-    },
-    {
-      id: 4,
-      name: "BankChat",
-      status: "Завершён",
-      progress: 55,
-    },
-  ];
 
   const filteredProjects = projects.filter((project) => {
     return projectFilter === "Все" || project.status === projectFilter;
@@ -91,21 +65,7 @@ function HomePage() {
       </div>
 
       <h2>Продолжить работу</h2>
-      <div className="project-filters">
-        {projectFilters.map((filterStatus) => (
-          <button
-            key={filterStatus.value}
-            className={
-              projectFilter === filterStatus.value
-                ? "filter-button filter-button--active"
-                : "filter-button"
-            }
-            onClick={() => setProjectFilter(filterStatus.value)}
-          >
-            {filterStatus.label}
-          </button>
-        ))}
-      </div>
+      <ProjectFilters value={projectFilter} onChange={setProjectFilter} />
 
       <div className="projects-grid">
         {filteredProjects.map((project) => (
