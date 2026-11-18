@@ -6,7 +6,7 @@ import AnalyticsPage from "./pages/AnalyticsPage";
 import AgentsPage from "./pages/AgentsPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import SettingsPage from "./pages/SettingsPage";
-
+import NotFoundPage from "./pages/NotFoundPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import { Routes, Route } from "react-router";
 
@@ -24,6 +24,7 @@ function App() {
           <Route path="/agents" element={<AgentsPage />} />
           <Route path="/notifications" element={<NotificationsPage />} />
           <Route path="/settings" element={<SettingsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
     </div>
